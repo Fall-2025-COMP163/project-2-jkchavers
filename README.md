@@ -145,3 +145,10 @@ Feel free to add your own creative touches for bonus points:
 - Additional character classes beyond the three required
 - More weapon types with different properties
 - Enhanced special abilities with unique effects
+
+## 🤖AI Usage
+- ChatGPT was used to debug errors with constructor arguments.
+
+## Reflection-(Very forgetful)
+- I frequently used incorrect syntax for the super function.
+- I constantly forgot to initialize each character class with an attribute for the character class.
