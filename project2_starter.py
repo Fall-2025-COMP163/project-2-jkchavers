@@ -61,9 +61,13 @@ class Character:
     
     def __init__(self, name, health, strength, magic):
         """Initialize basic character attributes"""
+        self.name = name
+        self.health = health
+        self.strength = strength
+        self.magic = magic
         # TODO: Set the character's name, health, strength, and magic
         # These should be stored as instance variables
-        pass
+
         
     def attack(self, target):
         """
@@ -73,20 +77,30 @@ class Character:
         2. Apply damage to the target
         3. Print what happened
         """
+        damage = self.strength * 2
+        target.take_damage(damage)
+        print(f"{target} has taken {damage} damage!")
         # TODO: Implement basic attack
         # Damage should be based on self.strength
         # Use target.take_damage(damage) to apply damage
-        pass
+
         
     def take_damage(self, damage):
         """
         Reduces this character's health by the damage amount.
         Health should never go below 0.
         """
+
+        if self.health > 0:
+            self.health -= damage
+            if self.health <= 0:
+                self.health = 0
+
+
         # TODO: Implement taking damage
         # Reduce self.health by damage amount
         # Make sure health doesn't go below 0
-        pass
+
         
     def display_stats(self):
         """
@@ -94,9 +108,16 @@ class Character:
         """
         # TODO: Print character's name, health, strength, and magic
         # Make it look nice with formatting
+
+
+        print("===Character Stats===")
+        print(self.name)
+        print(self.health)
+        print(self.strength)
+        print(self.magic)
         pass
 
-class Player(Character):
+class Player(Character):            #Modify
     """
     Base class for player characters.
     Inherits from Character and adds player-specific features.
@@ -107,19 +128,29 @@ class Player(Character):
         Initialize a player character.
         Should call the parent constructor and add player-specific attributes.
         """
+
+        super().__init__(name, health)
+        self.character_class = character_class
+
+        #Should these be in the constructor or as separate attributes?
+        self.level = 1
+        self.experience = 0
+
         # TODO: Call super().__init__() with the basic character info
         # TODO: Store the character_class (like "Warrior", "Mage", etc.)
         # TODO: Add any other player-specific attributes (level, experience, etc.)
-        pass
+
         
     def display_stats(self):
         """
         Override the parent's display_stats to show additional player info.
         Should show everything the parent shows PLUS player-specific info.
         """
+        super.display_stats()
+        print(f"{self.character_class.name}\nLevel: {self.level}\nExperience: {self.experience}")
         # TODO: Call the parent's display_stats method using super()
         # TODO: Then print additional player info like class and level
-        pass
+
 
 class Warrior(Player):
     """
